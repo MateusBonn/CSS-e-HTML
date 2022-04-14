@@ -1,0 +1,80 @@
+<meta charset="UTF-8" />
+<h1>Escreva os quatro primeiro digito da matricula</h1>
+<input />
+<button>Verificar</button>
+
+<script>
+  var valeDosSinos = [0055]
+  var nacional = [0865, 0002]
+  var estadual = [0048, 0020]
+  var input = document.querySelector('input')
+  input.focus()
+  var proximo = 0
+  input.value = ''
+  input.focus()
+  var achou = true
+
+  function verValeDosSinos() {
+    for (var posicao = 0; posicao < valeDosSinos.length; posicao++) {
+      if (input.value == valeDosSinos[posicao]) {
+        alert('Vale dos sinos')
+        achou = true
+        proximo = 0
+        return proximo || achou
+        break
+      } else {
+        proximo = 1
+        achou = false
+        return proximo || achou
+      }
+    }
+  }
+  function verEstadual(achou, proximo) {
+    for (var posicao = 0; posicao < estadual.length; posicao++) {
+      if (input.value == estadual[posicao]) {
+        alert('Intercambio estadual')
+        achou = true
+        proximo = 0
+        return proximo || achou
+        break
+      } else {
+        proximo = 2
+        achou = false
+        return proximo || achou
+      }
+    }
+  }
+  function verNacional(achou, proximo) {
+    for (var posicao = 0; posicao < nacional.length; posicao++) {
+      if (input.value == nacional[posicao]) {
+        alert('Intercambio nacional')
+        achou = true
+        proximo = 0
+        return proximo || achou
+        break
+      } else {
+        achou = false
+        proximo = 0
+        return proximo || achou
+      }
+    }
+  }
+  function verifica(achou, proximo) {
+    if (achou == true || proximo == 0) {
+      verValeDosSinos()
+    }
+    if (achou == false || proximo == 1) {
+      verEstadual()
+    }
+    if (achou == false || proximo == 2) {
+      verNacional()
+    }
+    if (achou == false || proximo == 0) {
+      alert('Matricula inexiste no banco de dados!')
+    }
+  }
+
+  var button = document.querySelector('button')
+
+  button.onclick = verifica
+</script>
